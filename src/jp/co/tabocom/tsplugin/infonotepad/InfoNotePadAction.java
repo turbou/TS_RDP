@@ -6,30 +6,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.ToolTip;
 
 import jp.co.tabocom.teratermstation.model.TargetNode;
 import jp.co.tabocom.teratermstation.ui.action.TeratermStationAction;
 
 public class InfoNotePadAction extends TeratermStationAction {
 
-    private Shell shell;
     private static final String SUFFIX = ".txt";
 
-    protected InfoNotePadAction(TargetNode node, Shell shell, ISelectionProvider selectionProvider) {
-        super("情報をテキストエディタで開く", "info.png", node, shell, selectionProvider);
-        this.shell = shell;
-    }
-
-    @Override
-    public boolean isValid() {
-        return true;
+    public InfoNotePadAction(TargetNode[] nodes, Object value, Shell shell) {
+        super("情報をテキストエディタで開く", "info.png", nodes, value, shell);
     }
 
     @Override
     public void run() {
         StringBuilder builder = new StringBuilder();
+        TargetNode node = nodes[0];
         if (node.getChildren().isEmpty()) {
             // 要は子供（サーバ号機）の場合
             builder.append(String.format("%-8s", node.getHostName()));
@@ -62,5 +56,10 @@ public class InfoNotePadAction extends TeratermStationAction {
         } catch (IOException e) {
             MessageDialog.openError(this.shell, "情報をテキストエディタで開く", SUFFIX + "ファイルの関連付けがされていません。");
         }
+    }
+
+    @Override
+    public ToolTip getToolTip() {
+        return null;
     }
 }
