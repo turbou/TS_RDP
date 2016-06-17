@@ -5,12 +5,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import jp.co.tabocom.teratermstation.model.TargetNode;
+import jp.co.tabocom.teratermstation.ui.action.TeratermStationAction;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolTip;
-
-import jp.co.tabocom.teratermstation.model.TargetNode;
-import jp.co.tabocom.teratermstation.ui.action.TeratermStationAction;
 
 public class InfoNotePadAction extends TeratermStationAction {
 
@@ -52,14 +52,23 @@ public class InfoNotePadAction extends TeratermStationAction {
             }
         }
         try {
-            File tempFile = File.createTempFile(node.getName(), SUFFIX);
+            File tempFile = null;
+            if (node.getParent().getName() != null) {
+                tempFile = File.createTempFile(node.getParent().getName() + "_" + node.getName(), SUFFIX);
+            } else {
+                tempFile = File.createTempFile(node.getName(), SUFFIX);
+            }
             FileWriter filewriter = new FileWriter(tempFile);
             filewriter.write(builder.toString());
             filewriter.close();
             tempFile.deleteOnExit();
             Desktop.getDesktop().edit(tempFile);
+        } catch (IllegalArgumentException e) {
+            MessageDialog.openError(this.shell, "情報をテキストエディタで開く", "サーバ名が短すぎて一時ファイルを生成できません。");
         } catch (IOException e) {
             MessageDialog.openError(this.shell, "情報をテキストエディタで開く", SUFFIX + "ファイルの関連付けがされていません。");
+        } catch (Exception e) {
+            MessageDialog.openError(this.shell, "情報をテキストエディタで開く", "問題が発生してファイルを開けません。");
         }
     }
 
