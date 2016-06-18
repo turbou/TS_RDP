@@ -53,10 +53,10 @@ public class InfoNotePadAction extends TeratermStationAction {
         }
         try {
             File tempFile = null;
-            if (node.getParent().getName() != null) {
-                tempFile = File.createTempFile(node.getParent().getName() + "_" + node.getName(), SUFFIX);
+            if (node.getCategory() != null) {
+                tempFile = File.createTempFile(node.getCategory().getName() + "_" + node.getName(), SUFFIX);
             } else {
-                tempFile = File.createTempFile(node.getName(), SUFFIX);
+                tempFile = File.createTempFile(node.getParent().getName() + "_" + node.getName(), SUFFIX);
             }
             FileWriter filewriter = new FileWriter(tempFile);
             filewriter.write(builder.toString());
