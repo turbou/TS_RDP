@@ -26,7 +26,7 @@ public class InfoNotePadAction extends TeratermStationAction {
         TargetNode node = nodes[0];
         if (node.getChildren().isEmpty()) {
             // 要は子供（サーバ号機）の場合
-            builder.append(node.getParent().getName());
+            builder.append(node.getParentName());
             builder.append("\r\n");
             builder.append(node.getName());
             builder.append("\r\n");
@@ -52,12 +52,7 @@ public class InfoNotePadAction extends TeratermStationAction {
             }
         }
         try {
-            File tempFile = null;
-            if (node.getCategory() != null) {
-                tempFile = File.createTempFile(node.getCategory().getName() + "_" + node.getName(), SUFFIX);
-            } else {
-                tempFile = File.createTempFile(node.getParent().getName() + "_" + node.getName(), SUFFIX);
-            }
+            File tempFile = File.createTempFile(node.getParentName() + "_" + node.getName(), SUFFIX);
             FileWriter filewriter = new FileWriter(tempFile);
             filewriter.write(builder.toString());
             filewriter.close();
