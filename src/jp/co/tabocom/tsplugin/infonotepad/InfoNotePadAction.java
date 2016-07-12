@@ -5,18 +5,18 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import jp.co.tabocom.teratermstation.TeratermStationShell;
 import jp.co.tabocom.teratermstation.model.TargetNode;
 import jp.co.tabocom.teratermstation.ui.action.TeratermStationAction;
 
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolTip;
 
 public class InfoNotePadAction extends TeratermStationAction {
 
     private static final String SUFFIX = ".txt";
 
-    public InfoNotePadAction(TargetNode[] nodes, Object value, Shell shell) {
+    public InfoNotePadAction(TargetNode[] nodes, Object value, TeratermStationShell shell) {
         super("情報をテキストエディタで開く", "info.png", nodes, value, shell);
     }
 

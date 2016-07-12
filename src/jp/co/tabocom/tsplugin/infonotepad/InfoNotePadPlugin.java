@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.preference.PreferenceStore;
-import org.eclipse.swt.widgets.Shell;
 
+import jp.co.tabocom.teratermstation.TeratermStationShell;
 import jp.co.tabocom.teratermstation.model.TargetNode;
 import jp.co.tabocom.teratermstation.plugin.TeratermStationPlugin;
 import jp.co.tabocom.teratermstation.ui.action.TeratermStationAction;
@@ -29,7 +29,7 @@ public class InfoNotePadPlugin implements TeratermStationPlugin {
     }
 
     @Override
-    public List<TeratermStationContextMenu> getActions(TargetNode[] nodes, Shell shell) {
+    public List<TeratermStationContextMenu> getActions(TargetNode[] nodes, TeratermStationShell shell) {
         InfoNotePadAction action = new InfoNotePadAction(nodes, null, shell);
         TeratermStationContextMenu menu = new TeratermStationContextMenu();
         menu.addAction(action);
@@ -37,12 +37,12 @@ public class InfoNotePadPlugin implements TeratermStationPlugin {
     }
 
     @Override
-    public List<TeratermStationAction> getBulkActions(TargetNode[] nodes, Shell shell) {
+    public List<TeratermStationAction> getBulkActions(TargetNode[] nodes, TeratermStationShell shell) {
         return null;
     }
 
     @Override
-    public List<TeratermStationContextMenu> getDnDActions(TargetNode[] nodes, Object value, Shell shell) {
+    public List<TeratermStationContextMenu> getDnDActions(TargetNode[] nodes, Object value, TeratermStationShell shell) {
         return null;
     }
 }
