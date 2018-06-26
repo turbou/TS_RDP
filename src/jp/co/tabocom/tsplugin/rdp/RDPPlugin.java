@@ -1,4 +1,4 @@
-package jp.co.tabocom.tsplugin.infonotepad;
+package jp.co.tabocom.tsplugin.rdp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +13,7 @@ import jp.co.tabocom.teratermstation.plugin.TeratermStationPlugin;
 import jp.co.tabocom.teratermstation.ui.action.TeratermStationAction;
 import jp.co.tabocom.teratermstation.ui.action.TeratermStationContextMenu;
 
-public class InfoNotePadPlugin implements TeratermStationPlugin {
+public class RDPPlugin implements TeratermStationPlugin {
 
     @Override
     public PreferencePage getPreferencePage() {
@@ -30,7 +30,7 @@ public class InfoNotePadPlugin implements TeratermStationPlugin {
 
     @Override
     public List<TeratermStationContextMenu> getActions(TargetNode[] nodes, TeratermStationShell shell) {
-        InfoNotePadAction action = new InfoNotePadAction(nodes, null, shell);
+        RDPAction action = new RDPAction(nodes, null, shell);
         TeratermStationContextMenu menu = new TeratermStationContextMenu();
         menu.addAction(action);
         return new ArrayList<TeratermStationContextMenu>(Arrays.asList(menu));

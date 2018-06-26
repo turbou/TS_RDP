@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="Shift_JIS"?>
-<project name="TS_InfoNotePad" default="jar" basedir="." >
+<project name="TS_RDP" default="jar" basedir="." >
     <target name="jar">
-        <jar basedir="bin" jarfile="infonotepad-1.1.2.jar">
+        <jar basedir="bin" jarfile="rdp-1.0.0.jar">
             <manifest>
-                 <attribute name="Plugin-Class" value="jp.co.tabocom.tsplugin.infonotepad.InfoNotePadPlugin"/>
+                 <attribute name="Plugin-Class" value="jp.co.tabocom.tsplugin.rdp.RDPPlugin"/>
              </manifest>
       	</jar>
     </target>
